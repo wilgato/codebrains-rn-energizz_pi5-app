@@ -1,20 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, IconRegistry, Layout, Text } from '@ui-kitten/components'; // Adicione o import do IconRegistry
+import { SafeAreaView } from 'react-native';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import DadosSensor1List from './src/components/DadosSensor1List';
 
-export default function App() {
+const HomeScreen = () => (
+  <Layout style={{flex: 1}}>
+    <SafeAreaView>
+      <Text style={{ marginTop: 40, fontSize: 24 }}> SMC-Monitoramento Saúde Corporal</Text>
+      <DadosSensor1List></DadosSensor1List>
+    </SafeAreaView>
+  </Layout>
+);
+
+export default () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <HomeScreen />
+      </ApplicationProvider>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
